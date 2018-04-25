@@ -24,14 +24,14 @@ extern "C" {
 
 // Pin number
 const PinName digitalPin[] = {
-  PA_1,  //D0
-  PA_2,  //D1
-  PA_3,  //D2
+  PA_3,  //D0 - serial RX
+  PA_2,  //D1 - serial TX
+  PA_1,  //D2
   PA_4,  //D3
   PA_5,  //D4
   PA_6,  //D5
-  PA_9,  //D6
-  PA_10, //D7
+  PA_9,  //D6 - serial1 TX
+  PA_10, //D7 - serial1 RX
   PF_1,  //D8
   PF_6,  //D9
   PF_7,  //D10

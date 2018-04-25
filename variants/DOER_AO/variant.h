@@ -34,14 +34,14 @@ extern "C"{
 extern const PinName digitalPin[];
 
 enum {
-  PA1,  //D0
-  PA2,  //D1
-  PA3,  //D2
+  PA3,  //D0 - serial RX
+  PA2,  //D1 - serial TX
+  PA1,  //D2
   PA4,  //D3
   PA5,  //D4
   PA6,  //D5
-  PA9,  //D6
-  PA10, //D7
+  PA9,  //D6 - serial1 TX
+  PA10, //D7 - serial1 RX
   PF1,  //D8
   PF6,  //D9 - BUTTON
   PF7,  //D10
@@ -75,11 +75,11 @@ enum {
 #define TIMER_SERVO             TIM3  //TODO: advanced-control timers don't work
 
 // UART Definitions
-#define SERIAL_UART_INSTANCE    1 //Connected to ST-Link
+#define SERIAL_UART_INSTANCE    2 //Connected to ST-Link
 // Default pin used for 'Serial' instance (ex: ST-Link)
 // Mandatory for Firmata
-#define PIN_SERIAL_RX           7
-#define PIN_SERIAL_TX           6
+#define PIN_SERIAL_RX           0
+#define PIN_SERIAL_TX           1
 
 #ifdef __cplusplus
 } // extern "C"

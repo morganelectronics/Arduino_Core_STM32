@@ -21,10 +21,10 @@ doer_ao.pid.0=0x5711
 
 doer_ao.build.core=arduino
 doer_ao.build.board=Nucleo_64
-doer_ao.build.extra_flags=-D{build.product_line} {build.enable_usb} {build.xSerial}
+doer_ao.build.extra_flags=-D{build.product_line} -DALL_HWSERIAL
 
 # NUCLEO_F030R8 board
-# Support: Serial1 (USART1 on PA10, PA9)
+# Support: Serial1 (USART1 on PA10, PA9) and Serial (USART2 on PA2, PA3)
 doer_ao.menu.pnum.NUCLEO_F030R8=Doer AO
 doer_ao.menu.pnum.NUCLEO_F030R8.node="NODE_F030R8,NUCLEO"
 doer_ao.menu.pnum.NUCLEO_F030R8.upload.maximum_size=65536
@@ -45,14 +45,11 @@ doer_ao.menu.upload_method.STLink=STLink
 doer_ao.menu.upload_method.STLink.upload.protocol=STLink
 doer_ao.menu.upload_method.STLink.upload.tool=stlink_upload
 
-################################################################################
-# Serialx activation
-doer_ao.menu.xserial.generic=Generic Serial
-
-# USB connectivity
-doer_ao.menu.usb.none=None
 
 # Optimizations
 doer_ao.menu.opt.oslto=Smallest (-Os) with LTO
 doer_ao.menu.opt.oslto.build.flags.optimize=-Os -flto
 doer_ao.menu.opt.oslto.build.flags.ldspecs=-flto
+doer_ao.menu.opt.o3lto=Fastest (-O3) with LTO
+doer_ao.menu.opt.o3lto.build.flags.optimize=-O3 -flto
+doer_ao.menu.opt.o3lto.build.flags.ldspecs=-flto
