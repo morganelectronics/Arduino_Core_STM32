@@ -21,7 +21,7 @@ doer_ao.pid.0=0x5711
 
 doer_ao.build.core=arduino
 doer_ao.build.board=Nucleo_64
-doer_ao.build.extra_flags=-D{build.product_line} -DALL_HWSERIAL
+doer_ao.build.extra_flags=-D{build.product_line} -DALL_HWSERIAL -DSTM32F030x8
 
 # NUCLEO_F030R8 board
 # Support: Serial1 (USART1 on PA10, PA9) and Serial (USART2 on PA2, PA3)

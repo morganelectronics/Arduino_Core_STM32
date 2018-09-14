@@ -723,24 +723,15 @@ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, u
 
     huart->TxXferSize = Size;
     huart->TxXferCount = Size;
+
     while(huart->TxXferCount > 0)
     {
+      huart->Instance->TDR = *pData++;
       huart->TxXferCount--;
-      if(UART_WaitOnFlagUntilTimeout(huart, UART_FLAG_TXE, RESET, tickstart, Timeout) != HAL_OK)
-      {
-        return HAL_TIMEOUT;
-      }
-      if ((huart->Init.WordLength == UART_WORDLENGTH_9B) && (huart->Init.Parity == UART_PARITY_NONE))
-      {
-        tmp = (uint16_t*) pData;
-        huart->Instance->TDR = (*tmp & (uint16_t)0x01FFU);
-        pData += 2;
-      }
-      else
-      {
-        huart->Instance->TDR = (*pData++ & (uint8_t)0xFFU);
-      }
+      while( __HAL_UART_GET_FLAG(huart, UART_FLAG_TXE) == RESET);
     }
+    
+
     if(UART_WaitOnFlagUntilTimeout(huart, UART_FLAG_TC, RESET, tickstart, Timeout) != HAL_OK)
     {
       return HAL_TIMEOUT;

@@ -343,6 +343,11 @@ void HardwareSerial::flush()
   // the hardware finished tranmission (TXC is set).
 }
 
+size_t HardwareSerial::write(uint8_t *buffer, size_t size)
+{
+  return uart_write(&_serial, buffer, size);
+}
+
 size_t HardwareSerial::write(uint8_t c)
 {
   _written = true;

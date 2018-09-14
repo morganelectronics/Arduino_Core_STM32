@@ -410,13 +410,15 @@ void uart_deinit(serial_t *obj)
   * @param  size : number of data to write
   * @retval The number of bytes written
   */
-size_t uart_write(serial_t *obj, uint8_t data, uint16_t size)
+size_t uart_write(serial_t *obj, uint8_t *data, uint16_t size)
 {
-  if(HAL_UART_Transmit(uart_handlers[obj->index], &data, size, TX_TIMEOUT) == HAL_OK) {
-    return size;
-  } else {
-    return 0;
+  uint32_t tickstart = HAL_GetTick();
+  while(HAL_UART_Transmit(uart_handlers[obj->index], data, size, TX_TIMEOUT) != HAL_OK) {
+    if((HAL_GetTick() - tickstart) >=  TX_TIMEOUT) {
+      return 0;
+    }
   }
+  return size;
 }
 
 /**
